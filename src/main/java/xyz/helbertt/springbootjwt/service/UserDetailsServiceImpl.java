@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new User(user.getUserName(), user.getPassword(), Collections.emptyList());
     }
 
-    private UserData findUser(String username) {
+    private UserData findUser(String userName) {
 
         UserData user = new UserData();
         user.setUserName("admin");

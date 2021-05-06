@@ -3,10 +3,12 @@ package xyz.helbertt.springbootjwt.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.catalina.User;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import xyz.helbertt.springbootjwt.data.UserData;
 
@@ -27,8 +29,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
     }
 
-    public Authentication attempAuthentication(HttpServletRequest req,
-                                               HttpServletResponse res) throws AuthenticationException {
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest req,
+                                               HttpServletResponse res) {
 
         try {
             UserData creds = new ObjectMapper()
